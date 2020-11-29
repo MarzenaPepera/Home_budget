@@ -27,7 +27,7 @@
 </header>
 <main>
 	<c:set var="licznik" value="${recordStartCounter }"/>
-	<section class="adozl">
+	<section class="budget">
 
 		<div class="container">
 

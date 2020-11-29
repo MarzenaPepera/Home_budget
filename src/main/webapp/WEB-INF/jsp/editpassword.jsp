@@ -27,7 +27,7 @@
 </header>
 <main>
 
-	<section class="adozl">
+	<section class="budget">
 
 		<div class="container">
 
@@ -46,7 +46,7 @@
 							<label for="name"><s:message code="passwordChange.newPassword"/></label>
 							<sf:password path="newPassword" class="form-control" />
 							<small class="form-text text-danger"><sf:errors path="newPassword"/></small>
-						</div>                      
+						</div>
 
 						<input type="submit" value="<s:message code="button.save"/>" />
 						<input type="reset" value="<s:message code="button.cancel"/>" onclick="window.location.href='${pageContext.request.contextPath}/'"/>

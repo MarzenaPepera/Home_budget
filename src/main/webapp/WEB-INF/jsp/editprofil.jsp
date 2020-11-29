@@ -27,7 +27,7 @@
 </header>
 <main>
 
-	<section class="adozl">
+	<section class="budget">
 
 		<div class="container">
 
@@ -65,7 +65,7 @@
 							<sf:input class="form-control" path="email" />
 							<small class="form-text text-danger"><sf:errors path="email"/></small>
                         </div>
-                        
+
 
 						<input type="submit" value="<s:message code="button.save"/>" />
 						<input type="reset" value="<s:message code="button.cancel"/>" onclick="window.location.href='${pageContext.request.contextPath}/'"/>

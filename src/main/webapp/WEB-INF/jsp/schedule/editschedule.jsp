@@ -27,7 +27,7 @@
 </header>
 <main>
 
-	<section class="adozl">
+	<section class="budget">
 
 		<div class="container">
 
@@ -35,7 +35,7 @@
 				<h1><s:message code="hourEdit.pageName" /></h1>
 				<p><c:out value="${message }" /></p>
 			</header>
-			
+
 			<div class="row">
 
 
@@ -75,7 +75,7 @@
 
 <script>
 	document.getElementById("allhour").classList.add("active");
-    
+
 </script>
 </body>
 </html>

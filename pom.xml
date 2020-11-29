@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pl.rafalmiskiewicz</groupId>
-    <artifactId>ADOZL</artifactId>
+    <artifactId>BUDGET</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ADOZL</name>
+    <name>BUDGET</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

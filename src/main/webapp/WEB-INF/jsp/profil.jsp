@@ -27,7 +27,7 @@
 </header>
 <main>
 
-	<section class="adozl">
+	<section class="budget">
 
 		<div class="container">
 
@@ -50,7 +50,7 @@
 									<c:out value="${user.email }"/>
 								</td>
 							</tr>
-							
+
 							<tr>
 								<td   align="right" >
 									<s:message code="register.name"/>
@@ -59,7 +59,7 @@
 									<c:out value="${user.name }"/>
 								</td>
 							</tr>
-							
+
 							<tr>
 								<td   align="right" >
 									<s:message code="register.lastName"/>
@@ -68,7 +68,7 @@
 									<c:out value="${user.lastName }"/>
 								</td>
 							</tr>
-						
+
 							<tr>
 								<td   align="right" >
 									<s:message code="register.telephone"/>
@@ -77,7 +77,7 @@
 									<c:out value="${user.telephone }"/>
 								</td>
 							</tr>
-						
+
 							<tr>
 								<td   align="right" >
 									<s:message code="register.is_fired"/>

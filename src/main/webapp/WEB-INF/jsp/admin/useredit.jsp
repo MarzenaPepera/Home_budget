@@ -27,7 +27,7 @@
 </header>
 <main>
 
-	<section class="adozl">
+	<section class="budget">
 
 		<div class="container">
 
@@ -71,8 +71,8 @@
 							<sf:select class="form-control" path="is_fired" items="${isFiredMap}"/>
 							<small class="form-text text-danger"><sf:errors path="is_fired"/></small>
 						</div>
-                        
-                        <div class="form-group">                            
+
+                        <div class="form-group">
                             <label for="nrRoli"><s:message code="profil.rola" /></label>
                             <sf:select class="form-control" path="nrRoli" items="${roleMap}"/>
 							<small class="form-text text-danger"><sf:errors path="nrRoli"/></small>

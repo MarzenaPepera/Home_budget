@@ -27,7 +27,7 @@
 </header>
 <main>
 
-	<section class="adozl">
+	<section class="budget">
 
 		<div class="container">
 
@@ -35,7 +35,7 @@
 				<h1><s:message code="menu.hourAdd" /></h1>
 				<p><c:out value="${message }" /></p>
 			</header>
-			
+
 			<div class="row">
 
 
