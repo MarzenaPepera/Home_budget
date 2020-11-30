@@ -45,8 +45,8 @@
 						<tr>
 							<td ><s:message code="register.name"/></td>
 							<td ><s:message code="register.lastName"/></td>
-							<td ><s:message code="hour.hour_from"/></td>
-							<td ><s:message code="hour.hour_to"/></td>
+							<td ><s:message code="transaction.hour_from"/></td>
+							<td ><s:message code="transaction.hour_to"/></td>
 							<td ><s:message code="places.description"/></td>
 						</tr>
 						</thead>

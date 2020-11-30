@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><s:message code="menu.hour"/></title>
+	<title><s:message code="menu.transaction"/></title>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +32,7 @@
 		<div class="container">
 
 			<header>
-				<h1><s:message code="menu.hour" /></h1>
+				<h1><s:message code="menu.transaction" /></h1>
 				<p><c:out value="${message }" /></p>
 			</header>
 
@@ -46,12 +46,12 @@
 
 							<td ><s:message code="register.name"/></td>
 							<td ><s:message code="register.lastName"/></td>
-							<td ><s:message code="hour.hour_from"/></td>
-							<td ><s:message code="hour.hour_to"/></td>
+							<td ><s:message code="transaction.hour_from"/></td>
+							<td ><s:message code="transaction.hour_to"/></td>
 						</tr>
 						</thead>
 						<tbody>
-						<c:forEach var="user" items="${hourList }">
+						<c:forEach var="user" items="${transactionList }">
 								<tr>
 									<td ><c:out value="${user.user.name }" /></td>
 									<td ><c:out value="${user.user.lastName }" /></td>

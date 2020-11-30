@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ADOZL_Spring_Zarzadzanie_Ludzmi" />
+        <module name="BUDGET" />
         <module name="Budzet_Domowy" />
         <module name="ADOZL" />
+        <module name="ADOZL_Spring_Zarzadzanie_Ludzmi" />
       </profile>
     </annotationProcessing>
   </component>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ADOZL" options="-parameters" />
       <module name="ADOZL_Spring_Zarzadzanie_Ludzmi" options="-parameters" />
+      <module name="BUDGET" options="-parameters" />
       <module name="Budzet_Domowy" options="-parameters" />
     </option>
   </component>

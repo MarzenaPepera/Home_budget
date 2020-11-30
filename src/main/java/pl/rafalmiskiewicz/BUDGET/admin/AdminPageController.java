@@ -9,11 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.rafalmiskiewicz.BUDGET.hours.Hour;
-import pl.rafalmiskiewicz.BUDGET.hours.HourService;
-import pl.rafalmiskiewicz.BUDGET.places.PlacesService;
-import pl.rafalmiskiewicz.BUDGET.schedule.Schedule;
-import pl.rafalmiskiewicz.BUDGET.schedule.ScheduleService;
+import pl.rafalmiskiewicz.BUDGET.transactions.Transaction;
+import pl.rafalmiskiewicz.BUDGET.transactions.TransactionService;
 import pl.rafalmiskiewicz.BUDGET.user.User;
 import pl.rafalmiskiewicz.BUDGET.user.UserService;
 
@@ -36,13 +33,7 @@ public class AdminPageController {
     private MessageSource messageSource;
 
     @Autowired
-    private HourService hourService;
-
-    @Autowired
-    private ScheduleService scheduleService;
-
-    @Autowired
-    private PlacesService placesService;
+    private TransactionService transactionService;
 
     @Autowired
     private UserService userService;
@@ -93,8 +84,6 @@ public class AdminPageController {
         return "admin/useredit";
     }
 
-
-
     @POST
     @RequestMapping(value = "/admin/updateuser/{id}")
     @Secured(value = "ROLE_ADMIN")
@@ -111,32 +100,14 @@ public class AdminPageController {
     @RequestMapping(value = "/admin/hour")
     @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
     public String openHourNewMainPage(Model model) {
-        List<Hour> hourList = hourService.findAll();
-        for (Hour h:hourList) {
+        List<Transaction> transactionList = transactionService.findAll();
+        for (Transaction h: transactionList) {
             matchUsers(h);
         }
-        model.addAttribute("hourList", hourList);
-        model.addAttribute(new Hour());
+        model.addAttribute("hourList", transactionList);
+        model.addAttribute(new Transaction());
         return "admin/hour";
     }
-
-    @POST
-    @RequestMapping(value = "/admin/schedule")
-    @Secured(value = {"ROLE_ADMIN","ROLE_USER","ROLE_CONTRROLER"})
-    public String openScheduleNewMainPage(Model model) {
-        List<Schedule> scheduleList = scheduleService.findAll();
-        for (Schedule s:scheduleList) {
-            matchPlaces(s);
-            matchUsers(s);
-        }
-        model.addAttribute("scheduleList", scheduleList);
-        model.addAttribute(new Schedule());
-        return "admin/schedule";
-    }
-
-
-
-
 
 
     // Pobranie listy userów
@@ -176,17 +147,8 @@ public class AdminPageController {
         return isFiredMap;
     }
 
-    void matchPlaces(Schedule schedule){
-        schedule.setPlaces(placesService.findPlacesById(schedule.getId_places()));
+    void matchUsers(Transaction transaction){
+        transaction.setUser(userService.findUserById(transaction.getUser().getId()));
     }
-
-    void matchUsers(Hour hour){
-        hour.setUser(userService.findUserById(hour.getId_user()));
-    }
-
-    void matchUsers(Schedule schedule){
-        schedule.setUser(userService.findUserById(schedule.getId_user()));
-    }
-
 
 }

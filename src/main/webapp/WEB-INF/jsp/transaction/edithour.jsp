@@ -40,16 +40,16 @@
 
 
 				<div class="col-sm-6 offset-sm-3">
-					<sf:form id="hourForm" action="edit/updatehour" modelAttribute="hour" enctype="multipart/form-data" method="POST">
+					<sf:form id="hourForm" action="edit/updatehour" modelAttribute="transaction" enctype="multipart/form-data" method="POST">
 						<sf:hidden path="id_hours"/>
 						<div class="form-group">
-							<label for="hour_from_string"><s:message code="hour.hour_from"/></label>
+							<label for="hour_from_string"><s:message code="transaction.hour_from"/></label>
 							<sf:input path="hour_from_string" class="form-control" />
 							<small id="hour_from_stringHelp" class="form-text text-danger"><sf:errors path="hour_from_string"/></small>
 						</div>
 
 						<div class="form-group">
-							<label for="hour_to_string"><s:message code="hour.hour_to"/></label>
+							<label for="hour_to_string"><s:message code="transaction.hour_to"/></label>
 							<sf:input path="hour_to_string" class="form-control" />
 							<small class="form-text text-danger"><sf:errors path="hour_to_string"/></small>
 						</div>

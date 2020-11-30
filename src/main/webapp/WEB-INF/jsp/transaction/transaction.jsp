@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><s:message code="menu.hour"/></title>
+	<title><s:message code="menu.transaction"/></title>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +32,7 @@
 		<div class="container">
 
 			<header>
-				<h1><s:message code="menu.hour" /></h1>
+				<h1><s:message code="menu.transaction" /></h1>
 				<p><c:out value="${message }" /></p>
 			</header>
 
@@ -44,18 +44,19 @@
 						<thead>
 						<tr>
 
-							<td ><s:message code="hour.hour_from"/></td>
-							<td ><s:message code="hour.hour_to"/></td>
+							<td ><s:message code="transaction.amount"/></td>
+							<td ><s:message code="transaction.description"/></td>
+							<td ><s:message code="transaction.date"/></td>
 						</tr>
 						</thead>
 						<tbody>
-						<c:forEach var="user" items="${hourList }">
-							<sf:form id="${user.id_hours}" action="hour/edit" modelAttribute="hour" enctype="multipart/form-data" method="POST">
-								<sf:hidden value="${user.id_hours }" path="id_hours"/>
+						<c:forEach var="user" items="${transactionList }">
+							<sf:form id="${user.id_transaction}" action="transaction/edit" modelAttribute="transaction" enctype="multipart/form-data" method="POST">
+								<sf:hidden value="${user.id_transaction }" path="id_transaction"/>
 								<tr>
-
-									<td ><c:out value="${user.hour_from }" /></td>
-									<td ><c:out value="${user.hour_to }" /></td>
+									<td ><c:out value="${user.amount }" /></td>
+									<td ><c:out value="${user.description }" /></td>
+									<td ><c:out value="${user.date }" /></td>
 									<td ><input type="submit" value="<s:message code="button.edit"/>" /></td>
 								</tr>
 							</sf:form>

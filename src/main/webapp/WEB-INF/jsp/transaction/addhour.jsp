@@ -40,15 +40,15 @@
 
 
 				<div class="col-sm-6 offset-sm-3">
-					<sf:form id="hourForm" action="inserthour" modelAttribute="hour" enctype="multipart/form-data" method="POST">
+					<sf:form id="hourForm" action="inserthour" modelAttribute="transaction" enctype="multipart/form-data" method="POST">
 
 						<div class="form-group">
 
 
 							<input name="onlyDate_from_string" type="date" class="form-control" id="onlyDate_from_string" >
-							<label for="hour_from_string"><s:message code="hour.hour_from"/></label>
+							<label for="hour_from_string"><s:message code="transaction.hour_from"/></label>
 							<input name="onlyHour_from_string" type="time" class="form-control" id="onlyHour_from_string" >
-							<label for="hour_to_string"><s:message code="hour.hour_to"/></label>
+							<label for="hour_to_string"><s:message code="transaction.hour_to"/></label>
 							<input name="onlyHour_to_string" type="time" class="form-control" id="onlyHour_to_string" >
 
 						</div>
