@@ -10,7 +10,9 @@ import pl.rafalmiskiewicz.BUDGET.validators.UserRegisterValidator;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 @Controller
 public class RegisterController {
@@ -38,6 +40,7 @@ public class RegisterController {
         user.setIs_fired(false);
         user.setIs_new(true);
 
+Role role = null;
 
 
         User userExist = userService.findUserByEmail(user.getEmail());

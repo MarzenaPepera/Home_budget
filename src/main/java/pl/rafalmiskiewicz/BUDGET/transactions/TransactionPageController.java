@@ -83,23 +83,16 @@ public class TransactionPageController {
         }
         transaction.setUser(userService.findUserByEmail(UserUtilities.getLoggedUser()));
 
-        new TransactionAddValidator().validate(transaction, result);
+        //new TransactionAddValidator().validate(transaction, result);
 
-        if (result.hasErrors()) {
-            returnPage = "transaction/addtransaction";
-        } else {
-            //transactionRepository.save(transaction);
+        if (!result.hasErrors()) {
             transactionService.saveTransaction(transaction);
-            //transactionService.saveTransactionNew(transaction);
-            //transactionService.insertTransactionString(transaction);
             model.addAttribute("message", messageSource.getMessage("transaction.add.success", null, locale));
             model.addAttribute("transaction", new Transaction());
-            returnPage = "transaction/addtransaction";
         }
+        returnPage = "transaction/addtransaction";
 
         return returnPage;
-
-
     }
 
 
@@ -107,7 +100,6 @@ public class TransactionPageController {
     @RequestMapping(value = "/transaction/edit/updatetransaction")
     @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
     public String editTransaction(Transaction transaction, BindingResult result, Model model, Locale locale) {
-
         String returnPage = null;
         try {
             transaction.stringToDate();
@@ -115,18 +107,14 @@ public class TransactionPageController {
             e.printStackTrace();
         }
 
-        //transaction.setId_user(userService.findUserByEmail(UserUtilities.getLoggedUser()).getId());
-        new TransactionAddValidator().validate(transaction, result);
+        //new TransactionAddValidator().validate(transaction, result);
 
-        if (result.hasErrors()) {
-            returnPage = "transaction/edittransaction";
-        } else {
+        if (!result.hasErrors()) {
             transactionService.updateTransaction(transaction);
-
             model.addAttribute("message", messageSource.getMessage("transaction.edit.success", null, locale));
             model.addAttribute("transaction", new Transaction());
-            returnPage = "transaction/edittransaction";
         }
+        returnPage = "transaction/edittransaction";
 
         return returnPage;
 

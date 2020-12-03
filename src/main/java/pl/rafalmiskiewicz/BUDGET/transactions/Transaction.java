@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(name = "transaction")
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_transaction")
     private Integer id_transaction;
 
@@ -79,10 +79,10 @@ public class Transaction {
     }
 
     public void stringToDate() throws ParseException {
-        setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date_string+ ":00"));
+        setDate(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(date_string));
     }
 
     public void dateToString() throws ParseException {
-        setDate_string(getDate().toString());
+        setDate_string(getDate().toString().substring(0,10)+"T"+getDate().toString().substring(11,16));
     }
 }

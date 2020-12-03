@@ -22,14 +22,12 @@
 
 							<a id="transaction" class="dropdown-item" href="/transaction"> <s:message code="menu.transaction"/> </a>
 							<div class="dropdown-divider"></div>
-							<a id="hourAdd" class="dropdown-item" href="/transaction/addhour"> <s:message code="menu.hourAdd"/> </a>
+							<a id="hourAdd" class="dropdown-item" href="/transaction/addtransaction"> <s:message code="menu.hourAdd"/> </a>
 
 						</div>
 
 					</li>
-					<li class="nav-item">
-							<a id="schedule" class="nav-link" href="/schedule"> <s:message code="menu.schedule"/> </a>
-					</li>
+
 
 
 </sec:authorize>
@@ -39,14 +37,9 @@
 						<a id="alladmin" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="submenu" aria-haspopup="true"> <s:message code="menu.adminPage"/> </a>
 						<div class="dropdown-menu" aria-labelledby="submenu">
 							<a id="users" class="dropdown-item" href="/admin/users/1"> <s:message code="menu.users"/> </a>
-							<div class="dropdown-divider"></div>
-							<a id="Aschedule" class="dropdown-item" href="/admin/schedule"> <s:message code="menu.schedule"/> </a>
-							<a id="Ahour" class="dropdown-item" href="/admin/transaction"> <s:message code="menu.transaction"/> </a>
 						</div>
 					</li>
-					<li class="nav-item">
-                        <a id="schedule" class="nav-link" href="/schedule/addschedule"> <s:message code="menu.scheduleAdd"/> </a>
-                    </li>
+
 
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">

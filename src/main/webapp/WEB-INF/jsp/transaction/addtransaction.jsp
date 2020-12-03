@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><s:message code="hourEdit.pageName"/></title>
+	<title><s:message code="menu.hourAdd"/></title>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +32,7 @@
 		<div class="container">
 
 			<header>
-				<h1><s:message code="hourEdit.pageName" /></h1>
+				<h1><s:message code="menu.hourAdd" /></h1>
 				<p><c:out value="${message }" /></p>
 			</header>
 
@@ -40,22 +40,22 @@
 
 
 				<div class="col-sm-6 offset-sm-3">
-					<sf:form id="hourForm" action="edit/updatehour" modelAttribute="transaction" enctype="multipart/form-data" method="POST">
-						<sf:hidden path="id_hours"/>
-						<div class="form-group">
-							<label for="hour_from_string"><s:message code="transaction.hour_from"/></label>
-							<sf:input path="hour_from_string" class="form-control" />
-							<small id="hour_from_stringHelp" class="form-text text-danger"><sf:errors path="hour_from_string"/></small>
-						</div>
+					<sf:form id="transactionForm" action="inserttransaction" modelAttribute="transaction" enctype="multipart/form-data" method="POST">
 
 						<div class="form-group">
-							<label for="hour_to_string"><s:message code="transaction.hour_to"/></label>
-							<sf:input path="hour_to_string" class="form-control" />
-							<small class="form-text text-danger"><sf:errors path="hour_to_string"/></small>
+
+							<label for="date_string"><s:message code="transaction.hour"/></label>
+							<input name="date_string" type="datetime-local"  class="form-control" id="date_string" >
+							<label for="amount"><s:message code="transaction.amount"/></label>
+							<input name="amount" type=number step=any class="form-control" id="amount" >
+							<label for="description"><s:message code="transaction.description"/></label>
+							<input name="description" class="form-control" id="description" >
+
 						</div>
+
 
 						<button type="submit" class="btn btn-primary"><s:message code="button.save" /></button>
-						<button type="reset" class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/'"><s:message code="button.cancel" /></button>
+						<button type="reset" class="btn btn-primary" onclick="window.location.href='/'"><s:message code="button.cancel" /></button>
 
 					</sf:form>
 				</div>
@@ -75,7 +75,6 @@
 
 <script>
 	document.getElementById("allhour").classList.add("active");
-
 </script>
 </body>
 </html>
