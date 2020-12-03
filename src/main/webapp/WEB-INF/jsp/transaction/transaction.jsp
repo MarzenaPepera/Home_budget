@@ -63,6 +63,7 @@
 						</c:forEach>
 						</tbody>
 					</table>
+					<p>Twoja aktualna suma pieniędzy to: <c:out value="${amount }" /></p>
 				</div>
 
 			</div>

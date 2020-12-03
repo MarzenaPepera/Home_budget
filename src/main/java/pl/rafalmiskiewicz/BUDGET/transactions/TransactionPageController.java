@@ -38,6 +38,8 @@ public class TransactionPageController {
     @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
     public String openTransactionNewMainPage(Model model) {
         List<Transaction> transactionList = transactionService.findAllByUserId(userService.findUserByEmail(UserUtilities.getLoggedUser()).getId());
+        Double amount= transactionList.stream().mapToDouble(t ->t.getAmount()).sum();
+        model.addAttribute("amount", amount);
         model.addAttribute("transactionList", transactionList);
         model.addAttribute(new Transaction());
         return "transaction/transaction";
