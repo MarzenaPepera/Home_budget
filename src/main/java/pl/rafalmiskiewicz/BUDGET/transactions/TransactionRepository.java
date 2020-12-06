@@ -20,11 +20,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
     @Query(value = "SELECT * FROM transaction WHERE transaction.=:idUser ", nativeQuery = true)
     List<Transaction> findAllBySchedule(@Param("idUser") int idUser);
 
-    @Transactional
-    @Modifying
-    @Query(value = "INSERT INTO `transaction` (`id_transactions`, `id_user`, `transaction_from`, `transaction_to`) VALUES (NULL, :id_user, :transaction_from, :transaction_to);", nativeQuery = true)
-    void insertTransactionString(@Param("id_user") int id_user, @Param("transaction_from") String transaction_from, @Param("transaction_to") String transaction_to);
-
     @Modifying
     @Query(value = "UPDATE `transaction` SET `amount` = :amount, `description` = :description, `date` = :date WHERE `transaction`.`id_transaction` = :id_transaction", nativeQuery = true)
     void updateTransaction(@Param("id_transaction") int id_transaction, @Param("amount") Double amount, @Param("description") String description, @Param("date") Date date);
