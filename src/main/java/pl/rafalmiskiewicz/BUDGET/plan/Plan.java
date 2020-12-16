@@ -15,6 +15,9 @@ public class Plan {
     @Column(name = "id_plan")
     private Integer id_plan;
 
+    @Column(name = "id_user")
+    private Integer id_user;
+
     @Column(name = "amount")
     private Double amount;
 
@@ -23,7 +26,6 @@ public class Plan {
 
     @Column(name = "description")
     private String description;
-
 
     @Transient
     private String date_string;
@@ -68,8 +70,16 @@ public class Plan {
         this.date_string = date_string;
     }
 
+    public Integer getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(Integer id_user) {
+        this.id_user = id_user;
+    }
+
     public void stringToDate() throws ParseException {
-        setDate(new SimpleDateFormat("yyyy-MM-dd").parse(date_string));
+        setDate(new SimpleDateFormat("yyyy-MM").parse(date_string));
     }
 
     public void dateToString() throws ParseException {

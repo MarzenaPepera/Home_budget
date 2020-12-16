@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.rafalmiskiewicz.BUDGET.user.User;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -39,5 +41,10 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public void updatePlan(Plan plan) {
         planRepository.updateTransaction(plan.getId_plan(), plan.getAmount(), plan.getDescription(), plan.getDate());
+    }
+
+    @Override
+    public Plan findPlanByDate(Date date) {
+        return planRepository.findByDate(date);
     }
 }

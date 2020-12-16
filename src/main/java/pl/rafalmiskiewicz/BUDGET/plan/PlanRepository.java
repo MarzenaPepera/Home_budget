@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import pl.rafalmiskiewicz.BUDGET.user.User;
 
 import java.util.Date;
 import java.util.List;
@@ -23,4 +24,6 @@ public interface PlanRepository extends JpaRepository<Plan, Integer> {
     @Modifying
     @Query(value = "UPDATE `plan` SET `amount` = :amount, `description` = :description, `date` = :date WHERE `plan`.`id_plan` = :id_plan", nativeQuery = true)
     void updateTransaction(@Param("id_plan") int id_plan, @Param("amount") Double amount, @Param("description") String description, @Param("date") Date date);
+
+    Plan findByDate(Date date);
 }

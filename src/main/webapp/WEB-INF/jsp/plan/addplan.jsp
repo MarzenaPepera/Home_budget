@@ -32,7 +32,7 @@
 		<div class="container">
 
 			<header>
-				<h1><s:message code="menu.hourAdd" /></h1>
+				<h1><s:message code="menu.planAdd" /></h1>
 				<p><c:out value="${message }" /></p>
 			</header>
 
@@ -40,16 +40,19 @@
 
 
 				<div class="col-sm-6 offset-sm-3">
-					<sf:form id="transactionForm" action="inserttransaction" modelAttribute="transaction" enctype="multipart/form-data" method="POST">
+					<sf:form id="planForm" action="insertplan" modelAttribute="plan" enctype="multipart/form-data" method="POST" pageEncoding="UTF-8">
 
 						<div class="form-group">
 
-							<label for="date_string"><s:message code="transaction.hour"/></label>
-							<input name="date_string" type="datetime-local"  class="form-control" id="date_string" >
-							<label for="amount"><s:message code="transaction.amount"/></label>
-							<input name="amount" type=number step=any class="form-control" id="amount" >
-							<label for="description"><s:message code="transaction.description"/></label>
-							<input name="description" class="form-control" id="description" >
+							<label for="date_string"><s:message code="plan.date"/></label>
+								<input name="date_string" type="month"   class="form-control" aria-describedby="dateHelp" id="date_string"  value="<c:out value="${plan.date_string}" />">
+							<small id="dateHelp" class="form-text text-danger"><sf:errors path="date"/></small>
+							<label for="amount"><s:message code="plan.amount"/></label>
+								<input name="amount" type=number step=any class="form-control" aria-describedby="amountHelp" id="amount" value="<c:out value="${plan.amount}" />">
+							<small id="amountHelp" class="form-text text-danger"><sf:errors path="date"/></small>
+							<label for="description"><s:message code="plan.description"/></label>
+								<input name="description" class="form-control" aria-describedby="descriptionHelp" id="description" value="<c:out value="${plan.description}" />">
+							<small id="descriptionHelp" class="form-text text-danger"><sf:errors path="date"/></small>
 
 						</div>
 
@@ -74,7 +77,7 @@
 <script src="/resources/js/bootstrap.min.js"></script>
 
 <script>
-	document.getElementById("allhour").classList.add("active");
+	document.getElementById("allplan").classList.add("active");
 </script>
 </body>
 </html>

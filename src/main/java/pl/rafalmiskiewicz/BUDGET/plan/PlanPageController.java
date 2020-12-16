@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.rafalmiskiewicz.BUDGET.user.UserService;
 import pl.rafalmiskiewicz.BUDGET.utilities.UserUtilities;
+import pl.rafalmiskiewicz.BUDGET.validators.PlanAddValidator;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -32,7 +33,7 @@ public class PlanPageController {
 
     @POST
     @RequestMapping(value = "/plan")
-    @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     public String openPlanNewMainPage(Model model) {
         List<Plan> planList = planService.findAllByUserId(userService.findUserByEmail(UserUtilities.getLoggedUser()).getId());
         //Double amount= planList.stream().mapToDouble(t ->t.getAmount()).sum();
@@ -45,7 +46,7 @@ public class PlanPageController {
 
     @GET
     @RequestMapping(value = "/plan/edit")
-    @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     public String getPlanIdToEditNew(Plan plan, Model model) {
 
         System.out.println(plan);
@@ -62,8 +63,8 @@ public class PlanPageController {
 
     @GET
     @RequestMapping(value = "/plan/addplan")
-    @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
-    public String addPlan( Model model) {
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
+    public String addPlan(Model model) {
 
         Plan h = new Plan();
         model.addAttribute("plan", h);
@@ -73,19 +74,24 @@ public class PlanPageController {
 
     @POST
     @RequestMapping(value = "/plan/insertplan")
-    @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     public String registerPlan(Plan plan, BindingResult result, Model model, Locale locale) {
         String returnPage = null;
-        try {
-            plan.stringToDate();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        //plan.setUser(userService.findUserByEmail(UserUtilities.getLoggedUser()));
+        if (plan.getDate_string() != null)
+            try {
+                plan.stringToDate();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        plan.setId_user(userService.findUserByEmail(UserUtilities.getLoggedUser()).getId());
 
-        //new TransactionAddValidator().validate(plan, result);
+        Plan planExist = planService.findPlanByDate(plan.getDate());
 
-        if (!result.hasErrors()) {
+        new PlanAddValidator().validate(plan, result);
+        new PlanAddValidator().validateMonthExist(planExist, result);
+        if (result.hasErrors()) {
+            model.addAttribute("plan", plan);
+        } else {
             planService.savePlan(plan);
             model.addAttribute("message", messageSource.getMessage("plan.add.success", null, locale));
             model.addAttribute("plan", new Plan());
@@ -98,7 +104,7 @@ public class PlanPageController {
 
     @POST
     @RequestMapping(value = "/plan/edit/updateplan")
-    @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
+    @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     public String editPlan(Plan plan, BindingResult result, Model model, Locale locale) {
         String returnPage = null;
         try {
@@ -120,7 +126,6 @@ public class PlanPageController {
 
 
     }
-
 
 
 }
