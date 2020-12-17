@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 29 Lis 2020, 21:45
+-- Czas generowania: 09 Gru 2020, 22:49
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.6
 
@@ -22,6 +22,28 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `home_budget` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `home_budget`;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `plan`
+--
+
+CREATE TABLE `plan` (
+  `id_plan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `amount` double NOT NULL,
+  `date` date NOT NULL,
+  `description` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Zrzut danych tabeli `plan`
+--
+
+INSERT INTO `plan` (`id_plan`, `id_user`, `amount`, `date`, `description`) VALUES
+(1, 1, 200, '2020-12-31', 'Zakupy'),
+(2, 1, 60, '2020-12-31', 'Przejazdy');
 
 -- --------------------------------------------------------
 
@@ -53,17 +75,19 @@ CREATE TABLE `transaction` (
   `id_transaction` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `amount` double NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Zrzut danych tabeli `transaction`
 --
 
-INSERT INTO `transaction` (`id_transaction`, `id_user`, `amount`, `description`) VALUES
-(1, 12, -12, 'Kebap'),
-(2, 34, 100, 'Od babci'),
-(3, 1, 2000, 'Wypłata');
+INSERT INTO `transaction` (`id_transaction`, `id_user`, `amount`, `description`, `date`) VALUES
+(1, 12, -12, 'Kebap', '2020-11-30 00:00:00'),
+(2, 34, 100, 'Od babci', '2020-11-30 00:00:00'),
+(3, 1, 333, 'Wyp?ata+', '2020-12-03 06:06:00'),
+(4, 1, 34.3456, 'sadgsdgf', '2020-11-30 06:37:00');
 
 -- --------------------------------------------------------
 
@@ -148,6 +172,8 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`id_user`, `id_role`) VALUES
 (1, 1),
+(1, 2),
+(1, 3),
 (3, 2),
 (4, 3),
 (5, 2),
@@ -173,6 +199,13 @@ INSERT INTO `user_role` (`id_user`, `id_role`) VALUES
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `plan`
+--
+ALTER TABLE `plan`
+  ADD PRIMARY KEY (`id_plan`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indeksy dla tabeli `role`
@@ -206,6 +239,12 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `plan`
+--
+ALTER TABLE `plan`
+  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT dla tabeli `role`
 --
 ALTER TABLE `role`
@@ -215,17 +254,23 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT dla tabeli `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Ograniczenia dla zrzutów tabel
 --
+
+--
+-- Ograniczenia dla tabeli `plan`
+--
+ALTER TABLE `plan`
+  ADD CONSTRAINT `plan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `transaction`
