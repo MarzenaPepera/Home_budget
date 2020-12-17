@@ -31,7 +31,7 @@
             <header>
 
                 <h1>Witaj!</h1>
-                <p>Jeśli jesteś zainteresowany pracą w naszej firmie jako osoba roznosząca ulotki zarejestruj się na tej stronie i wypełnij odpowiadające Ci godziny pracy. Po zatwierdzeniu przez naszą administrację twój harmonogram zostanie utworzony.</p>
+                <p>Aplikacja wspomagająca zarządzanie budżetem domowym</p>
                 <p><c:out value="${message }" /></p>
             </header>
 
