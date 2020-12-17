@@ -3,6 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -56,14 +57,16 @@
 								<tr>
 									<td ><c:out value="${user.amount }" /></td>
 									<td ><c:out value="${user.description }" /></td>
-									<td ><c:out value="${user.date }" /></td>
+									<td ><fmt:formatDate value="${user.date}" pattern="yyyy-MM-dd HH:mm" /></td>
 									<td ><input type="submit" value="<s:message code="button.edit"/>" /></td>
 								</tr>
 							</sf:form>
 						</c:forEach>
 						</tbody>
 					</table>
-					<p>Twoja aktualna suma pieniędzy to: <c:out value="${amount }" /></p>
+					<p>Twoja aktualna suma pieniędzy to: <fmt:formatNumber type="number" maxFractionDigits="2" value="${amount}"/>zł</p>
+					<p>Możesz jeszcze wydać: <fmt:formatNumber type="number" maxFractionDigits="2" value="${planAmount}"/>zł</p>
+					<p>Twój plan <c:out value="${plan.description }" /> wynosi <fmt:formatNumber type="number" maxFractionDigits="2" value="${plan.amount }" /></p>
 				</div>
 
 			</div>

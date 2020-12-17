@@ -3,6 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,27 +45,25 @@
 						<thead>
 						<tr>
 
-							<td ><s:message code="transaction.amount"/></td> <!-- TODO zmiana nazwy  na plan-->
-							<td ><s:message code="transaction.description"/></td>
-							<td ><s:message code="transaction.date"/></td>
+							<td ><s:message code="plan.amount"/></td>
+							<td ><s:message code="plan.description"/></td>
+							<td ><s:message code="plan.date"/></td>
 						</tr>
 						</thead>
 						<tbody>
 						<c:forEach var="plan" items="${planList }">
 							<sf:form id="${plan.id_plan}" action="plan/edit" modelAttribute="plan" enctype="multipart/form-data" method="POST" >
-							<%--								TODO Dodać kodowanie  UTF 8--%>
 								<sf:hidden value="${plan.id_plan }" path="id_plan"/>
 								<tr>
 									<td ><c:out value="${plan.amount }" /></td>
 									<td ><c:out value="${plan.description }" /></td>
-									<td ><c:out value="${plan.date }" /></td>
+									<td ><fmt:formatDate value="${plan.date}" pattern="yyyy-MM" /></td>
 									<td ><input type="submit" value="<s:message code="button.edit"/>" /></td>
 								</tr>
 							</sf:form>
 						</c:forEach>
 						</tbody>
 					</table>
-<%--					<p>Twoja aktualna suma pieniędzy to: <c:out value="${amount }" /></p>--%>
 				</div>
 
 			</div>

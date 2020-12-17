@@ -44,11 +44,11 @@
 
 						<div class="form-group">
 
-							<label for="date_string"><s:message code="transaction.hour"/></label>
+								<label for="date_string"><s:message code="transaction.hour"/></label>
 							<input name="date_string" type="datetime-local"  class="form-control" id="date_string" >
-							<label for="amount"><s:message code="transaction.amount"/></label>
+								<label for="amount"><s:message code="transaction.amount"/></label>
 							<input name="amount" type=number step=any class="form-control" id="amount" >
-							<label for="description"><s:message code="transaction.description"/></label>
+								<label for="description"><s:message code="transaction.description"/></label>
 							<input name="description" class="form-control" id="description" >
 
 						</div>
