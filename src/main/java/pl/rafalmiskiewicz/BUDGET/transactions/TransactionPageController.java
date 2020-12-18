@@ -40,16 +40,21 @@ public class TransactionPageController {
     @POST
     @RequestMapping(value = "/transaction")
     @Secured(value = {"ROLE_ADMIN","ROLE_USER"})
-    public String openTransactionNewMainPage(Model model) {
+    public String openTransactionNewMainPage(Model model,String stringDate) {
         Date date = new Date();
         date.setDate(1);
         date.setHours(0);
         date.setMinutes(0);
         date.setSeconds(0);
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        System.out.println(formatter.format(date));
+        try {
+            date = new SimpleDateFormat("yyyy-MM").parse(stringDate);
+        }catch (Exception e){
+            System.out.println(e);
+        }
 
-        List<Transaction> transactionList = transactionService.findAllByUserId(userService.findUserByEmail(UserUtilities.getLoggedUser()).getId());
+        //List<Transaction> transactionList = transactionService.findAllByUserId(userService.findUserByEmail(UserUtilities.getLoggedUser()).getId());
+        List<Transaction> transactionList = transactionService.findAllByMonth(userService.findUserByEmail(UserUtilities.getLoggedUser()),date);
         Plan plan = planService.findPlanByDate(date);
         Double amount= transactionList.stream().mapToDouble(t ->t.getAmount()).sum();
         model.addAttribute("amount", amount);
