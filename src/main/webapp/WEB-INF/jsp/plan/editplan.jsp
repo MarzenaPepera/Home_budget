@@ -40,22 +40,22 @@
 
 
 				<div class="col-sm-6 offset-sm-3">
-					<sf:form id="transactionForm" action="edit/updatetransaction" modelAttribute="transaction" enctype="multipart/form-data" method="POST">
-						<sf:hidden path="id_transaction"/>
+					<sf:form id="planForm" action="edit/updateplan" modelAttribute="plan" enctype="multipart/form-data" method="POST">
+						<sf:hidden path="id_plan"/>
 						<div class="form-group">
-							<label for="date_string"><s:message code="transaction.date"/></label>
-							<sf:input path="date_string" type="datetime-local"  class="date_string" />
+							<label for="date_string"><s:message code="plan.date"/></label>
+							<input  value="<c:out value="${month}" />" path="date_string" name="date_string" type="month"  class="date_string" />
 							<small id="date_stringHelp" class="form-text text-danger"><sf:errors path="date_string"/></small>
 						</div>
 
 						<div class="form-group">
-							<label for="amount"><s:message code="transaction.amount"/></label>
+							<label for="amount"><s:message code="plan.amount"/></label>
 							<sf:input path="amount" class="form-control" />
 							<small id="amount" class="form-text text-danger"><sf:errors path="amount"/></small>
 						</div>
 
 						<div class="form-group">
-							<label for="description"><s:message code="transaction.description"/></label>
+							<label for="description"><s:message code="plan.description"/></label>
 							<sf:input path="description" class="form-control" />
 							<small id="description" class="form-text text-danger"><sf:errors path="description"/></small>
 						</div>
