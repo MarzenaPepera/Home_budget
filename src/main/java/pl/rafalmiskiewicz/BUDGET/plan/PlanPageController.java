@@ -49,7 +49,7 @@ public class PlanPageController {
     @Secured(value = {"ROLE_ADMIN", "ROLE_USER"})
     public String getPlanIdToEditNew(Plan plan, Model model) {
 
-        System.out.println(plan);
+
         plan = planService.findPlanById(plan.getId_plan());
         try {
             plan.dateToString();
@@ -57,6 +57,7 @@ public class PlanPageController {
             e.printStackTrace();
         }
         model.addAttribute("plan", plan);
+        model.addAttribute("month", (plan.getDate().getYear()+1900)+"-"+(plan.getDate().getMonth()+1));
 
         return "plan/editplan";
     }

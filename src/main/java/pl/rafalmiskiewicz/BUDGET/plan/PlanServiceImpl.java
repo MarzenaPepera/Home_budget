@@ -40,7 +40,7 @@ public class PlanServiceImpl implements PlanService {
 
     @Override
     public void updatePlan(Plan plan) {
-        planRepository.updateTransaction(plan.getId_plan(), plan.getAmount(), plan.getDescription(), plan.getDate());
+        planRepository.updatePlan(plan.getId_plan(), plan.getAmount(), plan.getDescription(), plan.getDate());
     }
 
     @Override
