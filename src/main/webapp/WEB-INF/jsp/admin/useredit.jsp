@@ -66,8 +66,8 @@
 							<small class="form-text text-danger"><sf:errors path="email"/></small>
                         </div>
 
-						<div class="form-group">
-							<label for="is_fired"><s:message code="profil.czyZwolniony" /></label>
+						<div class="form-group" style="display: none;">
+							<label for="is_fired" type="hidden"><s:message code="profil.czyZwolniony" /></label>
 							<sf:select class="form-control" path="is_fired" items="${isFiredMap}"/>
 							<small class="form-text text-danger"><sf:errors path="is_fired"/></small>
 						</div>

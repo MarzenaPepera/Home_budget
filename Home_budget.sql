@@ -137,27 +137,6 @@ INSERT INTO `user` (`id_user`, `active`, `email`, `last_name`, `name`, `password
 (39, 1, 'szymon.kurowski@gmail.com', 'Kurowski', 'Szymon', '$2a$10$0W7YrSitDfi5nu1wGS1LUOSguzW5K3C9TdaRy41UB0N8VfUdO9mGS', 543849274, 50, 0, 1);
 
 --
--- Wyzwalacze `user`
---
-DELIMITER $$
-CREATE TRIGGER `create_user` AFTER INSERT ON `user` FOR EACH ROW BEGIN
- 
-	set @role=(SELECT id_role FROM role WHERE role="user");
-    set @u_user=new.id_user;
-	INSERT INTO user_role(id_user,id_role)
-	VALUES (@u_user,@role);
-   END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `delete_fired_user_hours` BEFORE UPDATE ON `user` FOR EACH ROW DELETE FROM hours WHERE hours.id_user=old.id_user 
-  AND old.is_fired='1' AND hours.hour_from>=CURRENT_DATE()
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
 -- Struktura tabeli dla tabeli `user_role`
 --
 

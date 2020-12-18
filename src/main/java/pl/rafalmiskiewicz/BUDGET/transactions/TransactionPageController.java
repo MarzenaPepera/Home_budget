@@ -56,14 +56,21 @@ public class TransactionPageController {
         //List<Transaction> transactionList = transactionService.findAllByUserId(userService.findUserByEmail(UserUtilities.getLoggedUser()).getId());
         List<Transaction> transactionList = transactionService.findAllByMonth(userService.findUserByEmail(UserUtilities.getLoggedUser()),date);
         Plan plan = planService.findPlanByDate(date);
-        if(plan==null)
-            plan=new Plan();
-        plan.setAmount(0.0);
-        Double amount= transactionList.stream().mapToDouble(t ->t.getAmount()).sum();
-        model.addAttribute("amount", amount);
+        if(plan==null) {
+            plan = new Plan();
+            plan.setAmount(0.0);
+        }
+        Double amount= transactionList.stream().mapToDouble(t -> {
+            if(t.getAmount()<0)
+                return t.getAmount();
+            else return 0;
+        }).sum();
+        Double amount2= transactionList.stream().mapToDouble(t -> t.getAmount()  ).sum();
+        model.addAttribute("amount", amount2);
         model.addAttribute("transactionList", transactionList);
         model.addAttribute("plan", plan);
-        model.addAttribute("planAmount", plan.getAmount()-amount);
+        model.addAttribute("planAmount", plan.getAmount()+amount);
+        model.addAttribute("data", stringDate);
 
         model.addAttribute(new Transaction());
         return "transaction/transaction";

@@ -55,9 +55,9 @@
 						<form id="planForm" action="transaction" modelAttribute="plan" enctype="multipart/form-data" method="POST" pageEncoding="UTF-8">
 							<div class="form-group">
 								<label for="date_string"><s:message code="plan.date"/></label>
-								<input name="stringDate" type="month" class="form-control" aria-describedby="dateHelp" id="date_string"  value="<c:out value="${plan.date_string}" />">
+								<input value="<c:out value="${data}" />" name="stringDate" type="month" class="form-control" aria-describedby="dateHelp" id="date_string"  value="<c:out value="${plan.date_string}" />">
 							</div>
-							<button type="submit"  class="btn btn-primary"><s:message code="button.save" /></button>
+							<button type="submit"  class="btn btn-primary">Wyszukaj</button>
 
 						</form>
 						<c:forEach var="user" items="${transactionList }">
