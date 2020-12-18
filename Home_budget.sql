@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 09 Gru 2020, 22:49
--- Wersja serwera: 10.4.11-MariaDB
--- Wersja PHP: 7.4.6
+-- Czas generowania: 18 Gru 2020, 18:00
+-- Wersja serwera: 10.1.19-MariaDB
+-- Wersja PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -42,8 +41,10 @@ CREATE TABLE `plan` (
 --
 
 INSERT INTO `plan` (`id_plan`, `id_user`, `amount`, `date`, `description`) VALUES
-(1, 1, 200, '2020-12-31', 'Zakupy'),
-(2, 1, 60, '2020-12-31', 'Przejazdy');
+(1, 3, 2500, '2020-08-01', 'Wrzesień'),
+(2, 3, 2000, '2020-10-01', 'Październik'),
+(3, 3, 2000, '2020-11-01', 'Listopad'),
+(5, 3, 3000, '2020-12-01', 'Grudzie?');
 
 -- --------------------------------------------------------
 
@@ -84,10 +85,15 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id_transaction`, `id_user`, `amount`, `description`, `date`) VALUES
-(1, 12, -12, 'Kebap', '2020-11-30 00:00:00'),
-(2, 34, 100, 'Od babci', '2020-11-30 00:00:00'),
-(3, 1, 333, 'Wyp?ata+', '2020-12-03 06:06:00'),
-(4, 1, 34.3456, 'sadgsdgf', '2020-11-30 06:37:00');
+(1, 3, -12, 'Kebap', '2020-10-21 00:00:00'),
+(2, 3, 100, 'Od babci', '2020-09-15 00:00:00'),
+(3, 3, 3000, 'Wypłata listopad', '2020-11-01 00:00:00'),
+(4, 3, -45, 'Pizza', '2020-11-30 06:37:00'),
+(5, 3, -499, 'Bilet na koncert', '2020-09-14 00:00:00'),
+(6, 3, 3000, 'Wypłata grudzień', '2020-12-01 00:00:00'),
+(7, 3, -15, 'Obiad', '2020-11-09 00:00:00'),
+(8, 3, -50, 'Zakupy ', '2020-10-04 00:00:00'),
+(9, 3, -80, 'Zakupy ', '2020-11-15 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -136,6 +142,8 @@ INSERT INTO `user` (`id_user`, `active`, `email`, `last_name`, `name`, `password
 (38, 1, 'szymon.oleksy@gmail.com', 'Oleksy', 'Szymon', '$2a$10$0OWfI5yX0cj12nIa1oJXnOa2gMMfJP6QdRKqHmIs9Etyw7ySIHJyS', 48529234, 50, 0, 1),
 (39, 1, 'szymon.kurowski@gmail.com', 'Kurowski', 'Szymon', '$2a$10$0W7YrSitDfi5nu1wGS1LUOSguzW5K3C9TdaRy41UB0N8VfUdO9mGS', 543849274, 50, 0, 1);
 
+-- --------------------------------------------------------
+
 --
 -- Struktura tabeli dla tabeli `user_role`
 --
@@ -180,34 +188,34 @@ INSERT INTO `user_role` (`id_user`, `id_role`) VALUES
 --
 
 --
--- Indeksy dla tabeli `plan`
+-- Indexes for table `plan`
 --
 ALTER TABLE `plan`
   ADD PRIMARY KEY (`id_plan`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeksy dla tabeli `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id_role`);
 
 --
--- Indeksy dla tabeli `transaction`
+-- Indexes for table `transaction`
 --
 ALTER TABLE `transaction`
   ADD PRIMARY KEY (`id_transaction`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeksy dla tabeli `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indeksy dla tabeli `user_role`
+-- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id_user`,`id_role`),
@@ -221,26 +229,22 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT dla tabeli `plan`
 --
 ALTER TABLE `plan`
-  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT dla tabeli `role`
 --
 ALTER TABLE `role`
   MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT dla tabeli `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id_transaction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT dla tabeli `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
 --
 -- Ograniczenia dla zrzutów tabel
 --
@@ -263,8 +267,3 @@ ALTER TABLE `transaction`
 ALTER TABLE `user_role`
   ADD CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
